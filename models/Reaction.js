@@ -21,6 +21,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: getDate,
     },
 
 
@@ -33,8 +34,8 @@ const reactionSchema = new Schema(
   }
 );
 
-reactionSchema.virtual('getDate').get(function () {
-  return this.createdAt.toLocaleDateString();
-});
+function getDate () {
+  return this.createdAt.toDateString();
+}
 
 module.exports = reactionSchema;
