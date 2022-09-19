@@ -11,12 +11,12 @@ module.exports = {
       .select('-__v')
       .then((thoughts) =>
         !thoughts
-          ? res.status(404).json({ message: 'No user with that ID' })
+          ? res.status(404).json({ message: 'No thought with that ID' })
           : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
-  // create a new user
+  // create a new thought
   createThought(req, res) {
     Thoughts.create(req.body)
       .then((dbThoughtData) => res.json(dbThoughtData))
