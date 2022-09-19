@@ -33,12 +33,12 @@ const thoughtSchema = new Schema(
 );
 // Virtual property 'reactionCount' that gets the amount of reactions per thought
 thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reaction.length;
+  return this.reactions.length;
 });
 
 // Formats the date to locality-sensitive format
 function getDate () {
- return this.createdAt.toDateString();
+ return this.createdAt.toLocaleString();
 }
 
 

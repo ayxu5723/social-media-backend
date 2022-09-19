@@ -35,7 +35,7 @@ const reactionSchema = new Schema(
 );
 
 function getDate () {
-  return this.createdAt.toDateString();
+  return this.createdAt.toLocaleString();
 }
 
 module.exports = reactionSchema;
