@@ -5,18 +5,18 @@
   The project is designed to manipulate back-end data of a social media site using MongoDB.
 
 ## Table of Contents
-  [Description](#description)<br/>
-  [Installation Instructions](#installation)<br/>
-  [Usage Information](#usage)<br/>
-  [License](#license)<br/>
-  [Video Link](#Video)<br/>
+1.  [Description](#description)<br/>
+2.  [Installation Instructions](#installation)<br/>
+3.  [Usage Information](#usage)<br/>
+4.  [License](#license)<br/>
+5.  [Video Link](#Video)<br/>
 
 
 ## Installation
 The following step is used to seed the database with data and can be ignored if the user wishes to start from scratch
 1. (run in terminal) npm run seeds
 To start the application on localhost port 3001
-2. (run in terminal) node server.js 
+2. (run in terminal) node index.js 
 
 ## Usage
 Users are able to implement CRUD operations to create, read, update and delete data in the selected database. <br/>
