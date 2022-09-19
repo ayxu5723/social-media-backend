@@ -37,4 +37,4 @@ Users are able to implement CRUD operations to create, read, update and delete d
 This application is covered under the [MIT](https://opensource.org/licenses/MIT) license
 
 ## Video
-To see the full walthrough of this application, please click [this link.](https://drive.google.com/file/d/1QQ-5e-AyeC7u2X0uRf-loV1ay5OK1s6m/view?usp=sharing)
+To see the full walthrough of this application, please click [this link.](https://drive.google.com/file/d/1JwieK42fV_I3nzlwAiussv-tbKhxHCj6/view?usp=sharing)
