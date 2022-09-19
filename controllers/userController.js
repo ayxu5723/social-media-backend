@@ -89,7 +89,7 @@ const removeFriend = (req, res) => {
     .then((user) =>
       !user
         ? res.status(404).json({ message: 'That user doesn\'t exist' })
-        : res.json('Friend removed')
+        : res.json(user)
   )
   .catch((err) => res.status(500).json(err));
 };
