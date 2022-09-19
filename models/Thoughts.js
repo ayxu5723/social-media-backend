@@ -13,8 +13,9 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
-      get: getDate
+      get: (date) => {
+        if (date) return date.toLocaleString()
+      },
     },
     username: {
       type: String,
@@ -36,10 +37,6 @@ thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
-// Formats the date to locality-sensitive format
-function getDate () {
- return this.createdAt.toLocaleString();
-}
 
 
 const Thoughts = model('thoughts', thoughtSchema);

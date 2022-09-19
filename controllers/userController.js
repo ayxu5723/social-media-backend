@@ -21,11 +21,12 @@ const getUsers = (req, res) => {
   }
 
 const getSingleUser = (req, res) => {
+  const ref = [{path: 'thoughts', select: '-__v'}, {path: 'friends', select: '-__v'}]
     User.findOne({ _id: req.params.userId })
-      .select('-__v')
-      .then((user) =>
+      .populate(ref)
+      .then(async (user) =>
         !user
-          ? res.status(404).json({ message: 'No user with that ID' })
+          ? res.status(404).json({ message: 'That user doesn\'t exist' })
           : res.json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -44,15 +45,24 @@ const updateUser = (req, res) => {
     { $set: req.body },
     { runValidators: true, new:true }
     )
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => res.status(500).json(err));
+    .then((user) =>
+      !user
+        ? res.status(404).json({ message: 'That user doesn\'t exist' })
+        : res.json(user)
+  )
+  .catch((err) => res.status(500).json(err));
 };
 
 
 const deleteUser = (req, res) => {
   User.findOneAndRemove({ _id:req.params.userId })
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => res.status(500).json(err));
+  .then((user) =>
+    !user
+      ? res.status(404).json({ message: 'That user doesn\'t exist' })
+      : Thoughts.deleteMany({ _id: {in: user.thoughts }})
+  )
+  .then(() => res.json ({message: 'User deleted'}))
+.catch((err) => res.status(500).json(err));
 };
 
 const addFriend = (req, res) => {
@@ -62,8 +72,12 @@ const addFriend = (req, res) => {
     { runValidators: true, new: true}
     )
 
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => res.status(500).json(err));
+    .then((user) =>
+      !user
+        ? res.status(404).json({ message: 'That user doesn\'t exist' })
+        : res.json(user)
+  )
+  .catch((err) => res.status(500).json(err));
 };
 
 const removeFriend = (req, res) => {
@@ -72,8 +86,12 @@ const removeFriend = (req, res) => {
     { $pull: {friends: req.params.friendId } },
     { runValidators: true, new: true}
     )
-    .then((dbUserData) => res.json(dbUserData))
-    .catch((err) => res.status(500).json(err));
+    .then((user) =>
+      !user
+        ? res.status(404).json({ message: 'That user doesn\'t exist' })
+        : res.json('Friend removed')
+  )
+  .catch((err) => res.status(500).json(err));
 };
 
   module.exports = {
